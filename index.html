@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Echo Healthcare Shipment Request Form</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #dbe3ef;
+      --brand: #0f5ea8;
+      --brand-dark: #0b4b85;
+      --soft: #eef4fb;
+      --danger: #b42318;
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .wrap {
+      max-width: 980px;
+      margin: 32px auto;
+      padding: 0 20px 40px;
+    }
+
+    .header {
+      margin-bottom: 20px;
+    }
+
+    .header h1 {
+      margin: 0 0 8px;
+      font-size: 30px;
+    }
+
+    .header p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 760px;
+    }
+
+    form {
+      display: grid;
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+    }
+
+    .card h2 {
+      margin: 0 0 16px;
+      font-size: 20px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid #c8d4e3;
+      border-radius: 10px;
+      padding: 12px 13px;
+      font-size: 14px;
+      background: #fff;
+    }
+
+    textarea { min-height: 110px; resize: vertical; }
+
+    .checkbox-group,
+    .radio-group {
+      display: grid;
+      gap: 10px;
+    }
+
+    .options-inline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px 20px;
+    }
+
+    .check,
+    .radio {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 400;
+      margin: 0;
+    }
+
+    .check input,
+    .radio input {
+      width: auto;
+      margin: 0;
+    }
+
+    .item-row {
+      display: grid;
+      grid-template-columns: 2.2fr 0.8fr 1.3fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .helper {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .submit-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding: 18px 22px;
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .submit-bar p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    button {
+      border: 0;
+      background: var(--brand);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 14px 20px;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    button:hover { background: var(--brand-dark); }
+
+    .required {
+      color: var(--danger);
+      font-weight: 700;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 760px) {
+      .grid-2,
+      .grid-3,
+      .grid-4,
+      .item-row {
+        grid-template-columns: 1fr;
+      }
+
+      .wrap {
+        padding: 0 14px 32px;
+        margin: 18px auto;
+      }
+
+      .card {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="header">
+      <h1>Echo Healthcare Shipment Request Form</h1>
+      <p>Please complete this form before giving items to Logistics. After submission, the request will be emailed directly to Logistics for review.</p>
+    </div>
+
+    <!--
+      SETUP:
+      1) Replace logistics@echohealthcare.com with your real email.
+      2) Open the file in a browser and submit once.
+      3) FormSubmit will send a confirmation email to activate the form.
+      4) After that, all submissions will go directly to that inbox.
+    -->
+
+    <form action="https://formsubmit.co/logistics@echohealthcare.com" method="POST">
+      <input type="hidden" name="_subject" value="New Echo Healthcare Shipment Request" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_next" value="https://example.com/thank-you.html" />
+
+      <div class="card">
+        <h2>1. Requestor Information</h2>
+        <div class="grid grid-2">
+          <div>
+            <label for="requestor_name">Name <span class="required">*</span></label>
+            <input id="requestor_name" name="Requestor Name" required />
+          </div>
+          <div>
+            <label for="department">Department <span class="required">*</span></label>
+            <input id="department" name="Department" required />
+          </div>
+          <div>
+            <label for="requestor_email">Email <span class="required">*</span></label>
+            <input id="requestor_email" name="Requestor Email" type="email" required />
+          </div>
+          <div>
+            <label for="date_needed">Date Needed to Ship</label>
+            <input id="date_needed" name="Date Needed to Ship" type="date" />
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>2. Recipient Information</h2>
+        <div class="grid grid-2">
+          <div>
+            <label for="company">Company / Organization</label>
+            <input id="company" name="Recipient Company / Organization" />
+          </div>
+          <div>
+            <label for="contact_name">Contact Name <span class="required">*</span></label>
+            <input id="contact_name" name="Recipient Contact Name" required />
+          </div>
+          <div>
+            <label for="address1">Address Line 1 <span class="required">*</span></label>
+            <input id="address1" name="Recipient Address Line 1" required />
+          </div>
+          <div>
+            <label for="address2">Address Line 2</label>
+            <input id="address2" name="Recipient Address Line 2" />
+          </div>
+          <div>
+            <label for="city">City <span class="required">*</span></label>
+            <input id="city" name="Recipient City" required />
+          </div>
+          <div>
+            <label for="state">State / Province</label>
+            <input id="state" name="Recipient State / Province" />
+          </div>
+          <div>
+            <label for="postal">Postal Code <span class="required">*</span></label>
+            <input id="postal" name="Recipient Postal Code" required />
+          </div>
+          <div>
+            <label for="country">Country <span class="required">*</span></label>
+            <input id="country" name="Recipient Country" required />
+          </div>
+          <div>
+            <label for="phone">Phone Number</label>
+            <input id="phone" name="Recipient Phone Number" />
+          </div>
+          <div>
+            <label for="recipient_email">Email</label>
+            <input id="recipient_email" name="Recipient Email" type="email" />
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>3. Shipment Purpose</h2>
+        <div class="checkbox-group">
+          <div class="options-inline">
+            <label class="check"><input type="checkbox" name="Shipment Purpose" value="Customer Order" /> Customer Order</label>
+            <label class="check"><input type="checkbox" name="Shipment Purpose" value="Warranty Replacement" /> Warranty Replacement</label>
+            <label class="check"><input type="checkbox" name="Shipment Purpose" value="Repair Return" /> Repair Return</label>
+            <label class="check"><input type="checkbox" name="Shipment Purpose" value="Demo / Evaluation" /> Demo / Evaluation</label>
+            <label class="check"><input type="checkbox" name="Shipment Purpose" value="Internal Transfer" /> Internal Transfer</label>
+            <label class="check"><input type="checkbox" name="Shipment Purpose" value="Other" /> Other</label>
+          </div>
+          <div>
+            <label for="purpose_other">If Other, explain</label>
+            <input id="purpose_other" name="Shipment Purpose - Other Details" />
+          </div>
+        </div>
+
+        <div style="margin-top: 18px;">
+          <label>Is the customer being charged?</label>
+          <div class="radio-group options-inline">
+            <label class="radio"><input type="radio" name="Customer Being Charged" value="Yes" /> Yes</label>
+            <label class="radio"><input type="radio" name="Customer Being Charged" value="No" /> No</label>
+          </div>
+        </div>
+
+        <div style="margin-top: 14px;">
+          <label for="not_charged_reason">If No, explain</label>
+          <textarea id="not_charged_reason" name="If No, Explain"></textarea>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>4. Contents of Shipment</h2>
+        <div class="item-row">
+          <div>
+            <label for="item_1">Item Description 1</label>
+            <input id="item_1" name="Item 1 Description" />
+          </div>
+          <div>
+            <label for="qty_1">Qty</label>
+            <input id="qty_1" name="Item 1 Qty" type="number" min="0" />
+          </div>
+          <div>
+            <label for="serial_1">Serial Number</label>
+            <input id="serial_1" name="Item 1 Serial Number" />
+          </div>
+        </div>
+
+        <div class="item-row">
+          <div>
+            <label for="item_2">Item Description 2</label>
+            <input id="item_2" name="Item 2 Description" />
+          </div>
+          <div>
+            <label for="qty_2">Qty</label>
+            <input id="qty_2" name="Item 2 Qty" type="number" min="0" />
+          </div>
+          <div>
+            <label for="serial_2">Serial Number</label>
+            <input id="serial_2" name="Item 2 Serial Number" />
+          </div>
+        </div>
+
+        <div class="item-row">
+          <div>
+            <label for="item_3">Item Description 3</label>
+            <input id="item_3" name="Item 3 Description" />
+          </div>
+          <div>
+            <label for="qty_3">Qty</label>
+            <input id="qty_3" name="Item 3 Qty" type="number" min="0" />
+          </div>
+          <div>
+            <label for="serial_3">Serial Number</label>
+            <input id="serial_3" name="Item 3 Serial Number" />
+          </div>
+        </div>
+
+        <div class="grid grid-2">
+          <div>
+            <label for="value">Estimated Commercial Value (for customs / insurance)</label>
+            <input id="value" name="Estimated Commercial Value" type="number" step="0.01" min="0" />
+          </div>
+          <div>
+            <label for="contents_notes">Additional contents notes</label>
+            <input id="contents_notes" name="Additional Contents Notes" />
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>5. Packaging</h2>
+        <div class="options-inline">
+          <label class="check"><input type="checkbox" name="Packaging" value="Items already boxed" /> Items already boxed</label>
+          <label class="check"><input type="checkbox" name="Packaging" value="Needs boxing" /> Needs boxing</label>
+          <label class="check"><input type="checkbox" name="Packaging" value="Needs palletization" /> Needs palletization</label>
+          <label class="check"><input type="checkbox" name="Packaging" value="Fragile" /> Fragile</label>
+        </div>
+
+        <div class="grid grid-4" style="margin-top: 18px;">
+          <div>
+            <label for="length">Length (in)</label>
+            <input id="length" name="Length (in)" type="number" step="0.01" min="0" />
+          </div>
+          <div>
+            <label for="width">Width (in)</label>
+            <input id="width" name="Width (in)" type="number" step="0.01" min="0" />
+          </div>
+          <div>
+            <label for="height">Height (in)</label>
+            <input id="height" name="Height (in)" type="number" step="0.01" min="0" />
+          </div>
+          <div>
+            <label for="weight">Weight (lbs)</label>
+            <input id="weight" name="Weight (lbs)" type="number" step="0.01" min="0" />
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>6. Special Requirements</h2>
+        <div class="options-inline">
+          <label class="check"><input type="checkbox" name="Special Requirements" value="Lithium batteries" /> Lithium batteries</label>
+          <label class="check"><input type="checkbox" name="Special Requirements" value="Standalone" /> Standalone</label>
+          <label class="check"><input type="checkbox" name="Special Requirements" value="Contained within equipment" /> Contained within equipment</label>
+          <label class="check"><input type="checkbox" name="Special Requirements" value="Hazardous materials" /> Hazardous materials</label>
+          <label class="check"><input type="checkbox" name="Special Requirements" value="Temperature sensitive" /> Temperature sensitive</label>
+          <label class="check"><input type="checkbox" name="Special Requirements" value="International shipment" /> International shipment</label>
+          <label class="check"><input type="checkbox" name="Special Requirements" value="Documents included inside" /> Documents included inside</label>
+        </div>
+
+        <div style="margin-top: 18px;">
+          <label for="special_notes">Notes / Special Instructions</label>
+          <textarea id="special_notes" name="Notes / Special Instructions"></textarea>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>7. Internal References</h2>
+        <div class="grid grid-3">
+          <div>
+            <label for="sales_order">Sales Order #</label>
+            <input id="sales_order" name="Sales Order #" />
+          </div>
+          <div>
+            <label for="sc">SC #</label>
+            <input id="sc" name="SC #" />
+          </div>
+          <div>
+            <label for="project_ref">Project / Customer Reference</label>
+            <input id="project_ref" name="Project / Customer Reference" />
+          </div>
+        </div>
+      </div>
+
+      <div class="submit-bar">
+        <p>Once submitted, the request will be sent directly to Logistics by email.</p>
+        <button type="submit">Submit Shipment Request</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
